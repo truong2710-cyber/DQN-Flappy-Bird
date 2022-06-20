@@ -112,9 +112,9 @@ class Trainer(object):
                 if episode % self.hparams.save_logs_frequency == 0:
                     agent.save(episode, logs_path)
                     np.save(os.path.join(logs_path, 'loss.npy'),
-                            np.array(loss_logs.cpu()))
+                            np.array(loss_logs))
                     np.save(os.path.join(logs_path, 'reward.npy'),
-                            np.array(reward_logs.cpu()))
+                            np.array(reward_logs))
 
                 # update target network
                 if episode % self.hparams.update_target_frequency == 0:
@@ -131,7 +131,7 @@ class Trainer(object):
                                               batch_state_new,
                                               batch_over)
 
-                loss_logs.extend([[episode, loss]])
+                loss_logs.extend([[episode, loss.cpu()]])
                 reward_logs.extend([[episode, total_reward]])
 
                 # print reward and loss
