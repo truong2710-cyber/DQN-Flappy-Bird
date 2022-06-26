@@ -131,7 +131,7 @@ class Agent:
 
         # remove oldest model and save the current model
         if len(model_list) > self.hparam.maximum_model - 1:
-            min_step = min([int(li.split('/')[-1][6:-4]) for li in model_list])
+            min_step = min([int(li.split('\\')[-1][6:-4]) for li in model_list])
             os.remove(os.path.join(logs_path, 'model-{}.pth' .format(min_step)))
         logs_path = os.path.join(logs_path, 'model-{}.pth' .format(step))
 
